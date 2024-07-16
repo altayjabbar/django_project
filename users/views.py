@@ -1,7 +1,20 @@
+from django.core.mail import send_mail
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm
+
+def send_test_email(request):
+    send_mail(
+        'Test Subject',
+        'This is a test message.',
+        'from@example.com',  # Change this to your from email
+        ['to@example.com'],  # Change this to your recipient email
+        fail_silently=False,
+    )
+    return HttpResponse("Email sent!")
+
 
 
 def register(request):
